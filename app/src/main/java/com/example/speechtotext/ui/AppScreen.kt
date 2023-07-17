@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.speechtotext.R
@@ -45,7 +46,7 @@ fun AppScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Speech to Text",
+                        text = stringResource(R.string.top_app_bar_title),
                         style = MaterialTheme.typography.headlineMedium,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -76,7 +77,7 @@ fun SpeechToTextScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Tap the mic icon to launch Speech to text",
+            text = stringResource(R.string.app_screen_text_message),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .fillMaxWidth()
@@ -95,7 +96,7 @@ fun SpeechToTextScreen(
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.icon_mic),
-                contentDescription = "Microphone",
+                contentDescription = stringResource(R.string.microphone_icon_description),
                 tint = Color.Green,
                 modifier = Modifier
                     .height(100.dp)
@@ -120,7 +121,7 @@ private fun getSpeechInput(onStartForResult: ActivityResultLauncher<Intent> ,con
     // Check if speech recognizer intent is present or not.
     if (!SpeechRecognizer.isRecognitionAvailable(context)) {
         // if the intent is not present we are simply displaying a toast message.
-        Toast.makeText(context, "Speech not Available", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context.getString(R.string.speech_recognizer_error_message), Toast.LENGTH_SHORT).show()
     } else {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
@@ -130,7 +131,7 @@ private fun getSpeechInput(onStartForResult: ActivityResultLauncher<Intent> ,con
 
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
 
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something...")
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, context.getString(R.string.app_screen_say_something))
 
         onStartForResult.launch(intent)
     }

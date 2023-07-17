@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Speech to Text</string>
+    <string name="app_screen_say_something">Say something...</string>
+    <string name="speech_recognizer_error_message">Speech not Available</string>
+    <string name="microphone_icon_description">Microphone</string>
+    <string name="app_screen_text_message">Tap the mic icon to launch Speech to text</string>
+    <string name="top_app_bar_title">Speech to Text</string>
 </resources>
